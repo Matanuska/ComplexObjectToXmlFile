@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace ComplexObjectToXmlFile
 {
@@ -15,6 +18,21 @@ namespace ComplexObjectToXmlFile
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+
+            Employees Emps = new Employees();
+            // Note that only the collection is serialized -- not the
+            // CollectionName or any other public property of the class.
+            Emps.CollectionName = "Employees";
+            Employee John100 = new Employee("John", "100xxx");
+            Emps.Add(John100);
+            XmlSerializer x = new XmlSerializer(typeof(Employees));
+            TextWriter writer = new StreamWriter(new FileStream("foo.xml",FileMode.Create),Encoding.UTF8);
+            x.Serialize(writer, Emps);
         }
     }
 }
