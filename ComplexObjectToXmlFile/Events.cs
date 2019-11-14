@@ -52,13 +52,13 @@ namespace ComplexObjectToXmlFile
 
     public class Event
     {
-        public string EmpName;
-        public string EmpID;
+        public string EventName;
+        public string EventID;
         public Event() { }
-        public Event(string empName, string empID)
+        public Event(string eventName, string eventID)
         {
-            EmpName = empName;
-            EmpID = empID;
+            EventName = eventName;
+            EventID = eventID;
         }
     }
 }
