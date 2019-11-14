@@ -35,6 +35,14 @@ namespace ComplexObjectToXmlFile
             XmlSerializer x = new XmlSerializer(typeof(Employees));
             TextWriter writer = new StreamWriter(new FileStream("foo.xml",FileMode.Create),Encoding.UTF8);
             x.Serialize(writer, Emps,ns);
+            writer.Close();
+
+            XmlSerializer z = new XmlSerializer(typeof(Employees));
+            StreamReader reader = new StreamReader("foo.xml");
+            Employees employ = (Employees)z.Deserialize(reader);
+            reader.Close();
+
+            label1.Text = employ[0].EmpName.ToString();
 
         }
     }
